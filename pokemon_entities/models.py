@@ -3,8 +3,11 @@ from datetime import datetime
 
 class Pokemon(models.Model):
     title = models.CharField(max_length=200)
+    title_en = models.CharField(max_length=200, default='')
+    title_jp = models.CharField(max_length=200, default='')
     image = models.ImageField(upload_to='pokemons', blank=True)
     description = models.TextField(default='')
+    title = models.CharField(max_length=200)
     def __str__(self):
         return '{}'.format(self.title)
 
