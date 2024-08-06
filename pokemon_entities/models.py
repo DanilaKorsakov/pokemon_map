@@ -12,9 +12,10 @@ class Pokemon(models.Model):
         verbose_name='Предыдущая эволюция',
         blank=True,
         on_delete=models.SET_NULL,
-        null=True
+        null=True,
+        related_name="next_evolution",
     )
-    title = models.CharField(max_length=200)
+
     def __str__(self):
         return '{}'.format(self.title)
 
