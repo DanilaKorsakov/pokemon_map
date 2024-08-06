@@ -79,7 +79,7 @@ def show_pokemon(request, pokemon_id):
             'title_ru': requested_pokemon.title,
             #'title_en': requested_pokemon.title_en,
             #'title_jp': requested_pokemon.title_jp,
-            #'description': requested_pokemon.description,
+            'description': requested_pokemon.description,
             #'previous_evolution': ,
             #'next_evolution':,
         }
