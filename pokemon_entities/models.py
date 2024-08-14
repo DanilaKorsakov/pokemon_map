@@ -3,10 +3,10 @@ from datetime import datetime
 
 class Pokemon(models.Model):
     title = models.CharField(max_length=200, verbose_name='Название')
-    title_en = models.CharField(max_length=200, default='', verbose_name='Название анг.', blank=True)
-    title_jp = models.CharField(max_length=200, default='', verbose_name='Название яп.', blank=True)
+    title_en = models.CharField(max_length=200, verbose_name='Название анг.', blank=True)
+    title_jp = models.CharField(max_length=200, verbose_name='Название яп.', blank=True)
     image = models.ImageField(upload_to='pokemons', blank=True, verbose_name='Изображение')
-    description = models.TextField( default='', verbose_name='Описание', blank=True)
+    description = models.TextField( verbose_name='Описание', blank=True)
     previous_evolution = models.ForeignKey(
         "Pokemon",
         verbose_name='Предыдущая эволюция',
