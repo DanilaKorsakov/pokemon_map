@@ -2,7 +2,7 @@ import folium
 import json
 
 from django.http import HttpResponseNotFound
-from django.shortcuts import render
+from django.shortcuts import render,  get_object_or_404
 from django.utils import timezone
 from .models import Pokemon, PokemonEntity
 
@@ -59,7 +59,7 @@ def show_all_pokemons(request):
 
 
 def show_pokemon(request, pokemon_id):
-    pokemon = Pokemon.objects.get(id=pokemon_id)
+    pokemon = get_object_or_404(Pokemon, id=pokemon_id)
     now = timezone.now()
     pokemon_entities = PokemonEntity.objects.filter(pokemon=pokemon, appeared_at__lte=now, disappeared_at__gte=now )
     folium_map = folium.Map(location=MOSCOW_CENTER, zoom_start=12)
@@ -79,7 +79,7 @@ def show_pokemon(request, pokemon_id):
              "img_url": previous_pokemon.image.url,
          }
 
-    next_pokemon =  pokemon.next_evolution.first()
+    next_pokemon =  pokemon.next_evolutions.first()
     next_evolution = {}
     if next_pokemon:
         next_evolution = {
