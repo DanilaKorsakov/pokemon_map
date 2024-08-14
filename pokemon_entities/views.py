@@ -7,6 +7,14 @@ from django.utils import timezone
 from .models import Pokemon, PokemonEntity
 
 
+def check_image(image):
+    if image:
+        return image.url
+    else:
+        return ''
+
+
+
 MOSCOW_CENTER = [55.751244, 37.618423]
 DEFAULT_IMAGE_URL = (
     'https://vignette.wikia.nocookie.net/pokemon/images/6/6e/%21.png/revision'
@@ -41,10 +49,7 @@ def show_all_pokemons(request):
     pokemons = Pokemon.objects.all()
     pokemons_on_page = []
     for pokemon in pokemons:
-        if pokemon.image:
-            image_url = pokemon.image.url
-        else:
-            image_url = ''
+        image_url = check_image(pokemon.image)
         pokemons_on_page.append({
             'pokemon_id': pokemon.id,
             'img_url': image_url,
